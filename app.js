@@ -14,7 +14,11 @@ io.on('connection', function(client) {
 
     client.on('join', function(data) {
         console.log(data);
-        client.emit('messages', 'Hello from server');
+    });
+
+    client.on('messages', function(data) {
+           client.emit('broad', data);
+           client.broadcast.emit('broad',data);
     });
 
 });
